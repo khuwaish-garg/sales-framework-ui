@@ -18,7 +18,7 @@ export default function DecisionModal({ open, onClose, bid, onSetDecision }) {
   const [isGo, setIsGo] = useState(true);
   const [committee, setCommittee] = useState([""]);
   const [reason, setReason] = useState("");
-  const [skipReason, setSkipReason] = useState(false);
+  const [skipDecision, setSkipDecision] = useState(false); // <-- NEW state
   const [step, setStep] = useState("select"); // "select", "goNoGo", "bidDecision"
   const [salesOpsEmails, setSalesOpsEmails] = useState([""]);
   const [proposalMgrEmails, setProposalMgrEmails] = useState([""]);
@@ -30,7 +30,7 @@ export default function DecisionModal({ open, onClose, bid, onSetDecision }) {
       setIsGo(true);
       setCommittee([""]);
       setReason("");
-      setSkipReason(false);
+      setSkipDecision(false); // <-- reset skipDecision
       setStep("select");
       setBidReviewDate("");
     }
@@ -43,8 +43,9 @@ export default function DecisionModal({ open, onClose, bid, onSetDecision }) {
       bidDecision:
         step === "bidDecision" ? (isGo ? "Bid" : "No-Bid") : bid.bidDecision,
       committee,
-      reason: isGo && skipReason ? "Skipped" : reason,
+      reason: skipDecision ? "Skipped" : reason, // <-- use skipDecision
       bidReviewDate,
+      skipDecision, // <-- include in updated object
     };
 
     if (onSetDecision) {
@@ -74,8 +75,8 @@ export default function DecisionModal({ open, onClose, bid, onSetDecision }) {
             setCommittee={setCommittee}
             reason={reason}
             setReason={setReason}
-            skipReason={skipReason}
-            setSkipReason={setSkipReason}
+            skipDecision={skipDecision} // <-- pass new state
+            setSkipDecision={setSkipDecision}
             salesOpsEmails={salesOpsEmails}
             setSalesOpsEmails={setSalesOpsEmails}
             proposalMgrEmails={proposalMgrEmails}

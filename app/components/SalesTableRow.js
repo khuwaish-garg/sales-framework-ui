@@ -28,9 +28,6 @@ export default function SalesTableRow({ row, onDecisionClick }) {
       <TableCell>
         <DecisionChip value={row.bidDecision} />
       </TableCell>
-      <TableCell>{renderBoolChip(row.guidanceReviewed)}</TableCell>
-      <TableCell>{renderBoolChip(row.bidSubmitted)}</TableCell>
-      <TableCell>{renderBoolChip(row.bidAccepted)}</TableCell>
       <TableCell>
         <Button
           variant="contained"
@@ -40,6 +37,9 @@ export default function SalesTableRow({ row, onDecisionClick }) {
           Set decision
         </Button>
       </TableCell>
+      <TableCell>{renderBoolChip(row.guidanceReviewed)}</TableCell>
+      <TableCell>{renderBoolChip(row.bidSubmitted)}</TableCell>
+      <TableCell>{renderBoolChip(row.bidAccepted)}</TableCell>
     </TableRow>
   );
 }

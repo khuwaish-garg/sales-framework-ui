@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  FormControlLabel,
-  Switch,
-  Typography,
-  TextField,
-  Checkbox,
-} from "@mui/material";
+import { FormControlLabel, Switch, Typography, TextField } from "@mui/material";
 import CommitteeInputs from "./CommitteeInputs";
 
 export default function GoNoGoForm({
@@ -16,8 +10,8 @@ export default function GoNoGoForm({
   setCommittee,
   reason,
   setReason,
-  skipReason,
-  setSkipReason,
+  skipDecision,
+  setSkipDecision,
   salesOpsEmails,
   setSalesOpsEmails,
   proposalMgrEmails,
@@ -25,10 +19,24 @@ export default function GoNoGoForm({
 }) {
   return (
     <>
+      {/* Go / No-Go toggle */}
       <FormControlLabel
         control={<Switch checked={isGo} onChange={() => setIsGo(!isGo)} />}
         label={isGo ? "Go" : "No-Go"}
       />
+
+      {/* Skip Decision toggle only for Go */}
+      {isGo && (
+        <FormControlLabel
+          control={
+            <Switch
+              checked={skipDecision}
+              onChange={() => setSkipDecision(!skipDecision)}
+            />
+          }
+          label="Skip Decision"
+        />
+      )}
 
       {isGo ? (
         <>
@@ -80,27 +88,15 @@ export default function GoNoGoForm({
       <Typography variant="subtitle2" sx={{ mt: 2 }} fontWeight="bold">
         {isGo ? "Go reason" : "No-Go reason"}
       </Typography>
-      {isGo && (
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={skipReason}
-              onChange={() => setSkipReason(!skipReason)}
-            />
-          }
-          label="Skip reason"
-        />
-      )}
-      {(!isGo || !skipReason) && (
-        <TextField
-          fullWidth
-          multiline
-          rows={3}
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          placeholder="Reason for the decision"
-        />
-      )}
+      <TextField
+        fullWidth
+        multiline
+        rows={3}
+        value={reason}
+        onChange={(e) => setReason(e.target.value)}
+        placeholder="Reason for the decision"
+        disabled={isGo && skipDecision} // only disable when Go + Skip Decision
+      />
     </>
   );
 }
