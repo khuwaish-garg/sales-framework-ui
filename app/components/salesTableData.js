@@ -7,10 +7,12 @@ export const columns = [
   { id: "form", label: "MS Form", minWidth: 120 },
   { id: "goNoGo", label: "Go/No-Go Decision", minWidth: 160 },
   { id: "bidDecision", label: "Bid/No-Bid Decision", minWidth: 160 },
+  { id: "action", label: "Action", minWidth: 140 },
   { id: "guidanceReviewed", label: "Guidance Reviewed", minWidth: 160 },
   { id: "bidSubmitted", label: "Bid Submitted", minWidth: 140 },
   { id: "bidAccepted", label: "Bid Accepted", minWidth: 140 },
-  { id: "action", label: "Action", minWidth: 140 },
+  { id: "goNoGoReason", label: "Go/No-Go Reason", minWidth: 200 },
+  { id: "bidReason", label: "Bid/No-Bid Reason", minWidth: 200 },
 ];
 
 export const initialRows = [
@@ -24,6 +26,8 @@ export const initialRows = [
     guidanceReviewed: true,
     bidSubmitted: true,
     bidAccepted: false,
+    goNoGoReason: "Strong client relationship",
+    bidReason: "Competitive pricing",
   },
   {
     title: "Bid Title 2",
@@ -35,6 +39,8 @@ export const initialRows = [
     guidanceReviewed: false,
     bidSubmitted: false,
     bidAccepted: false,
+    goNoGoReason: "Aligned with strategy",
+    bidReason: "Low profitability",
   },
   {
     title: "Bid Title 3",
@@ -46,6 +52,8 @@ export const initialRows = [
     guidanceReviewed: true,
     bidSubmitted: false,
     bidAccepted: false,
+    goNoGoReason: "Good market opportunity",
+    bidReason: "Awaiting committee review",
   },
   {
     title: "Bid Title 4",
@@ -57,6 +65,8 @@ export const initialRows = [
     guidanceReviewed: false,
     bidSubmitted: false,
     bidAccepted: false,
+    goNoGoReason: "Resource constraints",
+    bidReason: "Decision not finalized",
   },
   {
     title: "Bid Title 5",
@@ -68,6 +78,8 @@ export const initialRows = [
     guidanceReviewed: false,
     bidSubmitted: false,
     bidAccepted: false,
+    goNoGoReason: "Awaiting leadership input",
+    bidReason: "Pending review",
   },
   {
     title: "Bid Title 6",
@@ -79,5 +91,7 @@ export const initialRows = [
     guidanceReviewed: true,
     bidSubmitted: true,
     bidAccepted: true,
+    goNoGoReason: "Strategic fit",
+    bidReason: "High client value",
   },
 ];

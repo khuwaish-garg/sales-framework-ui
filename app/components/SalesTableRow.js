@@ -40,6 +40,8 @@ export default function SalesTableRow({ row, onDecisionClick }) {
       <TableCell>{renderBoolChip(row.guidanceReviewed)}</TableCell>
       <TableCell>{renderBoolChip(row.bidSubmitted)}</TableCell>
       <TableCell>{renderBoolChip(row.bidAccepted)}</TableCell>
+      <TableCell>{row.goNoGoReason}</TableCell>
+      <TableCell>{row.bidReason}</TableCell>
     </TableRow>
   );
 }

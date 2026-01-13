@@ -1,6 +1,6 @@
 "use client";
 
-import { FormControlLabel, Switch, Typography, TextField } from "@mui/material";
+import { FormControlLabel, Switch, Typography } from "@mui/material";
 import CommitteeInputs from "./CommitteeInputs";
 
 export default function GoNoGoForm({
@@ -21,7 +21,13 @@ export default function GoNoGoForm({
     <>
       {/* Go / No-Go toggle */}
       <FormControlLabel
-        control={<Switch checked={isGo} onChange={() => setIsGo(!isGo)} />}
+        control={
+          <Switch
+            checked={isGo}
+            onChange={() => setIsGo(!isGo)}
+            disabled={skipDecision} // 🔹 Disable when skipDecision is true
+          />
+        }
         label={isGo ? "Go" : "No-Go"}
       />
 
@@ -83,20 +89,6 @@ export default function GoNoGoForm({
           />
         </>
       )}
-
-      {/* Reason section */}
-      <Typography variant="subtitle2" sx={{ mt: 2 }} fontWeight="bold">
-        {isGo ? "Go reason" : "No-Go reason"}
-      </Typography>
-      <TextField
-        fullWidth
-        multiline
-        rows={3}
-        value={reason}
-        onChange={(e) => setReason(e.target.value)}
-        placeholder="Reason for the decision"
-        disabled={isGo && skipDecision} // only disable when Go + Skip Decision
-      />
     </>
   );
 }

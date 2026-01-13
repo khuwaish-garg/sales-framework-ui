@@ -42,18 +42,6 @@ export default function BidDecisionForm({
             setCommittee={setCommittee}
             label="Committee Member"
           />
-
-          <Typography variant="subtitle2" sx={{ mt: 2 }} fontWeight="bold">
-            No-Bid reason
-          </Typography>
-          <TextField
-            fullWidth
-            multiline
-            rows={3}
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            placeholder="Reason for the decision"
-          />
         </>
       )}
     </>
