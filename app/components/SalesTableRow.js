@@ -1,4 +1,3 @@
-// app/components/SalesTableRow.js
 import { TableRow, TableCell, Button, Chip } from "@mui/material";
 import DecisionChip from "./DecisionChip";
 
@@ -25,9 +24,11 @@ export default function SalesTableRow({ row, onDecisionClick }) {
       <TableCell>
         <DecisionChip value={row.goNoGo} />
       </TableCell>
+      <TableCell>{row.goNoGoReason}</TableCell>
       <TableCell>
         <DecisionChip value={row.bidDecision} />
       </TableCell>
+      <TableCell>{row.bidReason}</TableCell>
       <TableCell>
         <Button
           variant="contained"
@@ -40,8 +41,6 @@ export default function SalesTableRow({ row, onDecisionClick }) {
       <TableCell>{renderBoolChip(row.guidanceReviewed)}</TableCell>
       <TableCell>{renderBoolChip(row.bidSubmitted)}</TableCell>
       <TableCell>{renderBoolChip(row.bidAccepted)}</TableCell>
-      <TableCell>{row.goNoGoReason}</TableCell>
-      <TableCell>{row.bidReason}</TableCell>
     </TableRow>
   );
 }
