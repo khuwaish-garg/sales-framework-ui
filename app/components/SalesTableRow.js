@@ -1,7 +1,11 @@
-import { TableRow, TableCell, Button, Chip } from "@mui/material";
+import { TableRow, TableCell, Button, Chip, Switch } from "@mui/material";
 import DecisionChip from "./DecisionChip";
 
-export default function SalesTableRow({ row, onDecisionClick }) {
+export default function SalesTableRow({
+  row,
+  onDecisionClick,
+  onToggleChange,
+}) {
   const renderBoolChip = (val) => (
     <Chip
       label={val ? "Yes" : "No"}
@@ -13,23 +17,23 @@ export default function SalesTableRow({ row, onDecisionClick }) {
 
   return (
     <TableRow hover tabIndex={-1}>
-      <TableCell>{row.title}</TableCell>
-      <TableCell>{row.client}</TableCell>
-      <TableCell>{row.due}</TableCell>
-      <TableCell>
+      <TableCell align="center">{row.title}</TableCell>
+      <TableCell align="center">{row.client}</TableCell>
+      <TableCell align="center">{row.due}</TableCell>
+      <TableCell align="center">
         <Button variant="text" size="small">
           MS Form
         </Button>
       </TableCell>
-      <TableCell>
+      <TableCell align="center">
         <DecisionChip value={row.goNoGo} />
       </TableCell>
-      <TableCell>{row.goNoGoReason}</TableCell>
-      <TableCell>
+      <TableCell align="center">{row.goNoGoReason}</TableCell>
+      <TableCell align="center">
         <DecisionChip value={row.bidDecision} />
       </TableCell>
-      <TableCell>{row.bidReason}</TableCell>
-      <TableCell>
+      <TableCell align="center">{row.bidReason}</TableCell>
+      <TableCell align="center">
         <Button
           variant="contained"
           size="small"
@@ -38,9 +42,30 @@ export default function SalesTableRow({ row, onDecisionClick }) {
           Set decision
         </Button>
       </TableCell>
-      <TableCell>{renderBoolChip(row.guidanceReviewed)}</TableCell>
-      <TableCell>{renderBoolChip(row.bidSubmitted)}</TableCell>
-      <TableCell>{renderBoolChip(row.bidAccepted)}</TableCell>
+      <TableCell align="center">
+        <Switch
+          checked={row.guidanceReviewed}
+          onChange={(e) =>
+            onToggleChange(row.title, "guidanceReviewed", e.target.checked)
+          }
+        />
+      </TableCell>
+      <TableCell align="center">
+        <Switch
+          checked={row.bidSubmitted}
+          onChange={(e) =>
+            onToggleChange(row.title, "bidSubmitted", e.target.checked)
+          }
+        />
+      </TableCell>
+      <TableCell align="center">
+        <Switch
+          checked={row.bidAccepted}
+          onChange={(e) =>
+            onToggleChange(row.title, "bidAccepted", e.target.checked)
+          }
+        />
+      </TableCell>
     </TableRow>
   );
 }

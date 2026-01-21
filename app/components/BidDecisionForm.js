@@ -15,6 +15,7 @@ export default function BidDecisionForm({
 }) {
   return (
     <>
+      {/* Toggle between Bid and No-Bid */}
       <FormControlLabel
         control={<Switch checked={isGo} onChange={() => setIsGo(!isGo)} />}
         label={isGo ? "Bid" : "No-Bid"}
@@ -22,6 +23,7 @@ export default function BidDecisionForm({
 
       {isGo ? (
         <>
+          {/* Bid case: show review date */}
           <Typography variant="subtitle2" sx={{ mt: 2 }} fontWeight="bold">
             Bid Review date
           </Typography>
@@ -34,6 +36,7 @@ export default function BidDecisionForm({
         </>
       ) : (
         <>
+          {/*No-Bid case: committee members */}
           <Typography variant="subtitle2" sx={{ mt: 2 }} fontWeight="bold">
             Committee Members names
           </Typography>
@@ -41,6 +44,21 @@ export default function BidDecisionForm({
             committee={committee}
             setCommittee={setCommittee}
             label="Committee Member"
+          />
+
+          {/* No-Bid case: reason field */}
+          <Typography variant="subtitle2" sx={{ mt: 2 }} fontWeight="bold">
+            Reason for No-Bid decision
+          </Typography>
+          <TextField
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            placeholder="Enter reason for No-Bid decision"
+            variant="outlined"
+            size="small"
+            fullWidth
+            multiline
+            minRows={4}
           />
         </>
       )}

@@ -8,14 +8,15 @@ export default function SalesTableHeader({ columns, orderBy, order, onSort }) {
         {columns.map((col) => (
           <TableCell
             key={col.id}
+            align="center" // ✅ centers text in the cell
             sx={{ minWidth: col.minWidth, cursor: "pointer" }}
             onClick={() => onSort(col.id)}
           >
             <Stack
               direction="row"
+              justifyContent="center" // ✅ centers horizontally
               alignItems="center"
               spacing={1}
-              variant="subtitle2"
               sx={{ fontWeight: "bold" }}
             >
               <span>{col.label}</span>

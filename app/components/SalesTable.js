@@ -50,12 +50,22 @@ export default function SalesTable() {
           ? {
               ...row,
               goNoGo: updatedDecision.goNoGo,
+              goNoGoReason: updatedDecision.goNoGoReason,
               bidDecision: updatedDecision.bidDecision,
+              bidReason: updatedDecision.bidReason,
             }
-          : row
-      )
+          : row,
+      ),
     );
     closeDecisionModal();
+  };
+
+  const handleToggleChange = (title, field, value) => {
+    setRows((prev) =>
+      prev.map((row) =>
+        row.title === title ? { ...row, [field]: value } : row,
+      ),
+    );
   };
 
   const handleSort = (colId) => {
@@ -80,7 +90,7 @@ export default function SalesTable() {
 
   const visible = sorted.slice(
     page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
+    page * rowsPerPage + rowsPerPage,
   );
 
   return (
@@ -118,6 +128,7 @@ export default function SalesTable() {
                 key={row.title}
                 row={row}
                 onDecisionClick={openDecisionModal}
+                onToggleChange={handleToggleChange}
               />
             ))}
           </TableBody>

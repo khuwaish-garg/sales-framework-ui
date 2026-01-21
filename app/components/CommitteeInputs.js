@@ -13,9 +13,14 @@ export default function CommitteeInputs({ committee, setCommittee, label }) {
       {committee.map((val, idx) => (
         <TextField
           key={idx}
-          label={`${label} ${idx + 1}`}
+          // Use placeholder instead of label to avoid blue text inside boundary
+          placeholder={`${label} ${idx + 1}`}
           value={val}
           onChange={(e) => updateItem(idx, e.target.value)}
+          variant="outlined"
+          size="small"
+          fullWidth
+          InputLabelProps={{ shrink: true }} // ensures no floating label overlap
         />
       ))}
       <Button onClick={addItem} size="small">
